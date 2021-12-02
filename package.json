@@ -48,7 +48,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "graphql": "^15.7.2",
     "husky": "^7.0.4",
-    "jest": "^27.4.2",
+    "jest": "^27.4.3",
     "lint-staged": "^11.2.6",
     "nuxt-graphql-request": "^4.2.2",
     "postcss-combine-duplicated-selectors": "9.4.0",
