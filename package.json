@@ -49,7 +49,7 @@
     "graphql": "^15.8.0",
     "husky": "^7.0.4",
     "jest": "^27.4.5",
-    "lint-staged": "^11.2.6",
+    "lint-staged": "^12.1.4",
     "nuxt-graphql-request": "^4.3.0",
     "postcss-combine-duplicated-selectors": "9.4.0",
     "postcss-combine-media-query": "^1.0.1",
