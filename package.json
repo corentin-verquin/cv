@@ -50,7 +50,7 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^11.2.6",
-    "nuxt-graphql-request": "^6.0.1",
+    "nuxt-graphql-request": "^6.0.2",
     "postcss-combine-duplicated-selectors": "9.4.0",
     "postcss-combine-media-query": "^1.0.1",
     "prettier": "^2.7.1",

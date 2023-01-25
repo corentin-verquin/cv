@@ -7012,10 +7012,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
-graphql-request@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-5.0.0.tgz#7504a807d0e11be11a3c448e900f0cc316aa18ef"
-  integrity sha512-SpVEnIo2J5k2+Zf76cUkdvIRaq5FMZvGQYnA4lUWYbc99m+fHh4CZYRRO/Ff4tCLQ613fzCm3SiDT64ubW5Gyw==
+graphql-request@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-5.1.0.tgz#dbc8feee27d21b993cd5da2d3af67821827b240a"
+  integrity sha512-0OeRVYigVwIiXhNmqnPDt+JhMzsjinxHE7TVy3Lm6jUzav0guVcL0lfSbi6jVTRAxcbwgyr6yrZioSHxf9gHzw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     cross-fetch "^3.1.5"
@@ -9623,13 +9623,13 @@ num2fraction@^1.2.2:
   resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
   integrity sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
 
-nuxt-graphql-request@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/nuxt-graphql-request/-/nuxt-graphql-request-6.0.1.tgz#5aa93a6f05f009ee575ce5068eb198fd7d5f24e7"
-  integrity sha512-bnl+sWHgdZA8yqChEsoBfE2z51/9mkpXNvgTw0YIbMPA30l9NR5gfRnwWK+m6y2VqMOQvMeZzrW4tpfF5ubSIg==
+nuxt-graphql-request@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/nuxt-graphql-request/-/nuxt-graphql-request-6.0.2.tgz#5e54dfe5219939fc7dad523892b7df7f5d80f683"
+  integrity sha512-uya6XWPT1sa+PhH++NVgYyfTJI3qircAG5YY65tVE8eMyNE886zD1Rwv0cUn8VHumhxu1M5wn9dxJYQaprUUtQ==
   dependencies:
     cross-fetch "^3.1.5"
-    graphql-request "^5.0.0"
+    graphql-request "^5.1.0"
     ramda "^0.28.0"
 
 nuxt-property-decorator@^2.9.1:
