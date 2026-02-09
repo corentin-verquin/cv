@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Développeur Platform Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --dark: #0a0e14;
+            --darker: #05070a;
+            --card-bg: #12161f;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #ff006e;
+            --grid-color: rgba(0, 255, 136, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated grid background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(50px);
+            }
+        }
+
+        /* Gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(100px, 100px);
+            }
+        }
+
+        .container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+            }
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-tag {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Experience Section */
+        .section {
+            padding: 4rem 0;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .experience-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--darker);
+            box-shadow: 0 0 0 4px var(--card-bg);
+        }
+
+        .experience-card:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .company-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .location {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .degree {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .school {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .year {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(0, 255, 136, 0.05) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .contact-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--darker);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            filter: grayscale(0.3);
+        }
+
+        .project-status {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .project-demo {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-demo:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-pill:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--secondary);
+        }
+
+        .project-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .highlight-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .contact-section {
+                padding: 2rem;
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">&lt;DevOps/&gt;</div>
+            <nav>
+                <a href="#experience">Expérience</a>
+                <a href="#projects">Projets</a>
+                <a href="#education">Formation</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Disponible pour de nouveaux défis
+                </div>
+                <h1>Platform Engineering & Developer Experience</h1>
+                <p class="subtitle">Développeur Senior spécialisé en CI/CD, Kubernetes, Go et Cloud. Passionné par l'amélioration de la Developer Experience et l'automatisation du delivery.</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Go</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">GCP</span>
+                    <span class="tech-tag">JFrog</span>
+                    <span class="tech-tag">Vault</span>
+                    <span class="tech-tag">CI/CD</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2 class="section-title">Expérience Professionnelle</h2>
+            
+            <div class="timeline">
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">ADEO</div>
+                            <div class="job-title">Développeur – Platform Engineering</div>
+                            <div class="location">📍 Ronchin, Hauts-de-France (Hybride)</div>
+                        </div>
+                        <div class="duration">Avr. 2023 - Aujourd'hui · 2 ans 11 mois</div>
+                    </div>
+                    <p class="description">
+                        Développement et intégration d'outils internes autour de GitHub, JFrog et Vault pour construire une plateforme d'ingénierie interne. L'objectif : rendre le build et le déploiement totalement transparents pour les équipes.
+                    </p>
+                    <p class="description"><strong>Missions principales :</strong></p>
+                    <ul class="description">
+                        <li>Développement de services et outils facilitant le delivery continu</li>
+                        <li>Automatisation du build et des pipelines CI/CD</li>
+                        <li>Contribution à la vision produit de la plateforme d'ingénierie</li>
+                        <li>Amélioration continue de la Delivery Experience</li>
+                    </ul>
+                    <div class="skills">
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">GitHub</span>
+                        <span class="skill-badge">GitHub Action</span>
+                        <span class="skill-badge">JFrog</span>
+                        <span class="skill-badge">Vault</span>
+                        <span class="skill-badge">Go</span>
+                        <span class="skill-badge">Terraform</span>
+                        <span class="skill-badge">Cloudevents</span>
+                        <span class="skill-badge">GCP</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">ADEO</div>
+                            <div class="job-title">Référent Delivery Continu</div>
+                            <div class="location">📍 Ronchin, Hauts-de-France (Hybride)</div>
+                        </div>
+                        <div class="duration">Déc. 2022 - Mars 2023 · 4 mois</div>
+                    </div>
+                    <p class="description">
+                        Relais sur les sujets de delivery continu entre la plateforme e-commerce et la plateforme globale ADEO. Harmonisation des pratiques CI/CD, fiabilisation des pipelines et amélioration du suivi des déploiements.
+                    </p>
+                    <p class="description"><strong>Missions :</strong></p>
+                    <ul class="description">
+                        <li>Optimisation de la cohérence entre les chaînes de livraison produit</li>
+                        <li>Automatisation et standardisation des processus de déploiement</li>
+                        <li>Mise en place d'indicateurs de fiabilité et de performance</li>
+                    </ul>
+                    <div class="skills">
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">GitHub</span>
+                        <span class="skill-badge">GitHub Action</span>
+                        <span class="skill-badge">JFrog</span>
+                        <span class="skill-badge">Vault</span>
+                        <span class="skill-badge">Terraform</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Leroy Merlin</div>
+                            <div class="job-title">Lead Développeur Front-end Transverse</div>
+                        </div>
+                        <div class="duration">Oct. 2021 - Déc. 2022 · 1 an 3 mois</div>
+                    </div>
+                    <p class="description">
+                        Accompagnement des feature teams de la plateforme e-commerce dans l'amélioration continue du code, de la performance et de la qualité front-end. Animation de la communauté technique et définition des standards front à l'échelle du site.
+                    </p>
+                    <p class="description"><strong>Missions :</strong></p>
+                    <ul class="description">
+                        <li>Définition et diffusion des bonnes pratiques front-end</li>
+                        <li>Amélioration des performances (Core Web Vitals)</li>
+                        <li>Support technique transverse aux équipes produit</li>
+                    </ul>
+                    <div class="skills">
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">Vue.js</span>
+                        <span class="skill-badge">NestJS</span>
+                        <span class="skill-badge">Core Web Vitals</span>
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Leroy Merlin</div>
+                            <div class="job-title">Tech Lead Front-end – Feature Team Services</div>
+                        </div>
+                        <div class="duration">Déc. 2019 - Oct. 2021 · 1 an 11 mois</div>
+                    </div>
+                    <p class="description">
+                        Responsable technique front-end sur la feature team "Service" (location, installation, offres gouvernementales). Pilotage de la qualité du code, revue, et coordination avec les UX/UI designers.
+                    </p>
+                    <p class="description"><strong>Missions :</strong></p>
+                    <ul class="description">
+                        <li>Mise en place de standards techniques front-end</li>
+                        <li>Suivi de la qualité et amélioration continue du delivery</li>
+                    </ul>
+                    <div class="skills">
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">REST</span>
+                        <span class="skill-badge">Freemarker</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">Goweb</div>
+                            <div class="job-title">Consultant Senior</div>
+                            <div class="location">📍 Roubaix, Nord-Pas-de-Calais</div>
+                        </div>
+                        <div class="duration">Juil. 2019 - Aujourd'hui · 6 ans 8 mois</div>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">ADTi</div>
+                            <div class="job-title">Analyste Programmeur</div>
+                            <div class="location">📍 Villeneuve d'Ascq</div>
+                        </div>
+                        <div class="duration">Août 2018 - Juin 2019 · 11 mois</div>
+                    </div>
+                    <p class="description">
+                        Responsable du développement d'une application de gestion des risques chimiques, de la conception à la mise en production. Optimisation des performances et amélioration de l'ergonomie de l'application web.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">VB.NET</span>
+                        <span class="skill-badge">SQL Server</span>
+                        <span class="skill-badge">IIS</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">ADTi</div>
+                            <div class="job-title">Analyste Programmeur (Alternance)</div>
+                            <div class="location">📍 Villeneuve d'Ascq</div>
+                        </div>
+                        <div class="duration">Août 2017 - Août 2018 · 1 an 1 mois</div>
+                    </div>
+                    <p class="description">
+                        Développement d'une application de gestion des risques chimiques dans le cadre d'une alternance.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">IIS</span>
+                        <span class="skill-badge">SQL Server</span>
+                    </div>
+                </div>
+
+                <div class="experience-card fade-in">
+                    <div class="company-header">
+                        <div>
+                            <div class="company-name">ADTi</div>
+                            <div class="job-title">Stagiaire Développement Web</div>
+                            <div class="location">📍 Villeneuve d'Ascq</div>
+                        </div>
+                        <div class="duration">Mai 2017 - Juil. 2017 · 3 mois</div>
+                    </div>
+                    <p class="description">
+                        Migration d'un logiciel de gestion de maintenance vers une application web Angular / C#.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-badge">Angular</span>
+                        <span class="skill-badge">C#</span>
+                        <span class="skill-badge">SQL Server</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <h2 class="section-title">Formation</h2>
+            
+            <div class="education-grid">
+                <div class="education-card fade-in">
+                    <div class="degree">Licence DA2I</div>
+                    <div class="school">Université de Lille</div>
+                    <div class="year">2017 - 2018</div>
+                    <p class="description" style="margin-top: 1rem;">Spécialisation en Informatique</p>
+                </div>
+
+                <div class="education-card fade-in">
+                    <div class="degree">DUT Informatique</div>
+                    <div class="school">Université de Lille</div>
+                    <div class="year">2015 - 2017</div>
+                    <p class="description" style="margin-top: 1rem;">Formation technique en développement et systèmes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2 class="section-title">Projets Personnels</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <div class="project-icon">🎯</div>
+                        <div class="project-status">Production</div>
+                    </div>
+                    <h3 class="project-title">Gestion de Tournoi de Pétanque</h3>
+                    <p class="project-description">
+                        Application web complète pour gérer des tournois de pétanque. Architecture serverless moderne déployée sur AWS avec une stack TypeScript/JavaScript performante.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-pill">NestJS</span>
+                        <span class="tech-pill">SolidJS</span>
+                        <span class="tech-pill">AWS Lambda</span>
+                        <span class="tech-pill">Terraform</span>
+                        <span class="tech-pill">Serverless</span>
+                    </div>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">☁️</span>
+                            <span>Infrastructure as Code</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">⚡</span>
+                            <span>Architecture Serverless</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <div class="project-icon">🎨</div>
+                        <a href="#" class="project-demo">Voir la démo →</a>
+                    </div>
+                    <h3 class="project-title">PLY Reader</h3>
+                    <p class="project-description">
+                        Visualiseur 3D interactif pour modèles au format PLY. Permet la manipulation en temps réel (zoom, rotation, translation) avec rendu optimisé en JavaScript pur.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">WebGL</span>
+                        <span class="tech-pill">3D Graphics</span>
+                    </div>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔄</span>
+                            <span>Manipulation 3D fluide</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎯</span>
+                            <span>Rendu optimisé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-header">
+                        <div class="project-icon">🐳</div>
+                        <a href="#" class="project-demo">Voir la démo →</a>
+                    </div>
+                    <h3 class="project-title">DockerNet</h3>
+                    <p class="project-description">
+                        Visualiseur temps réel des connexions entre conteneurs Docker. Interface graphique dynamique mise à jour instantanément via la socket Docker.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">Docker API</span>
+                        <span class="tech-pill">Socket.IO</span>
+                        <span class="tech-pill">Real-time</span>
+                    </div>
+                    <div class="project-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📡</span>
+                            <span>Temps réel</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔍</span>
+                            <span>Monitoring visuel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="contact-title">Travaillons ensemble</h2>
+            <p class="contact-subtitle">Intéressé par mes compétences en Platform Engineering ? Discutons de votre prochain projet !</p>
+            <div class="contact-buttons">
+                <a href="https://linkedin.com/in/votre-profil" class="btn btn-primary">LinkedIn</a>
+                <a href="https://github.com/votre-profil" class="btn btn-secondary">GitHub</a>
+                <a href="/cdn-cgi/l/email-protection#61170e1513044f040c00080d210419000c110d044f020e0c" class="btn btn-secondary">Email</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 - Développé avec passion pour la Platform Engineering</p>
+        </footer>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
