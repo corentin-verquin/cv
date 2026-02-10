@@ -5,6 +5,7 @@
     <NavBar />
     <NuxtPage />
   </div>
+  <Footer></Footer>
 </template>
 
 <style lang="css">
