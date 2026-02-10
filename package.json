@@ -1,0 +1,19 @@
+{
+  "name": "cv",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.11.2",
+    "better-sqlite3": "^12.6.2",
+    "nuxt": "^4.3.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
