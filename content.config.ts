@@ -24,8 +24,8 @@ export default defineContentConfig({
       }),
     }),
     experience: defineCollection({
-      type: 'page',
-      source: 'experience/**/*.md',
+      type: "page",
+      source: "experience/**/*.md",
       schema: z.object({
         companyName: z.string(),
         jobTitle: z.string(),
@@ -33,16 +33,27 @@ export default defineContentConfig({
         startDate: z.string(),
         endDate: z.string().optional(),
         skills: z.array(z.string()).optional(),
-      })
+      }),
     }),
     formation: defineCollection({
-      type: 'page',
-      source: 'formation/**/*.md',
+      type: "page",
+      source: "formation/**/*.md",
       schema: z.object({
         title: z.string(),
         location: z.string(),
         date: z.string(),
-      })
-    })
+      }),
+    }),
+    projet: defineCollection({
+      type: "page",
+      source: "project/**/*.md",
+      schema: z.object({
+        title: z.string(),
+        production: z.boolean().default(false),
+        link: z.string().optional(),
+        icon: z.string(),
+        techno: z.array(z.string()),
+      }),
+    }),
   },
 });

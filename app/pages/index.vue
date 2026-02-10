@@ -13,6 +13,12 @@
       <FormationCard v-for="form in formations" :key="form.id" :card="form" />
     </div>
   </section>
+  <section id="projects" class="section">
+    <h2 class="section-title">Projets Personnels</h2>
+    <div class="projects-grid">
+      <ProjectCard v-for="proj in projects" :key="proj.id" :card="proj" />
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -26,6 +32,9 @@ const experiences = await queryCollection("experience")
 
 const formations = await queryCollection("formation")
   .order("date", "DESC")
+  .all();
+
+const projects = await queryCollection("projet")
   .all();
 </script>
 
@@ -74,5 +83,26 @@ const formations = await queryCollection("formation")
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2rem 0;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
 }
 </style>

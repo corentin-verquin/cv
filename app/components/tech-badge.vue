@@ -5,7 +5,11 @@
       :key="tag"
       :class="[
         'tech-tag',
-        { 'tech-tag--small': props.small, 'tech-tag--primary': props.primary },
+        {
+          'tech-tag--small': props.small,
+          'tech-tag--primary': props.type === 'primary',
+          'tech-tag--secondary': props.type === 'secondary',
+        },
       ]"
       >{{ tag }}</span
     >
@@ -16,7 +20,7 @@
 const props = defineProps<{
   tags: string[];
   small?: boolean;
-  primary?: boolean;
+  type?: "primary" | "secondary";
 }>();
 </script>
 
@@ -40,7 +44,7 @@ const props = defineProps<{
   border-radius: 8px;
   font-size: 0.85rem;
   transition: all 0.3s ease;
-  cursor: default ;
+  cursor: default;
 }
 
 .tech-tag--small {
@@ -59,5 +63,16 @@ const props = defineProps<{
   background: rgba(0, 255, 136, 0.1);
   color: var(--primary);
   border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.tech-tag--secondary {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--secondary);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.tech-tag--secondary:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--secondary);
 }
 </style>
