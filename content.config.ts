@@ -23,5 +23,17 @@ export default defineContentConfig({
         skills: z.array(z.string()),
       }),
     }),
+    experience: defineCollection({
+      type: 'page',
+      source: 'experience/**/*.md',
+      schema: z.object({
+        companyName: z.string(),
+        jobTitle: z.string(),
+        location: z.string(),
+        startDate: z.string(),
+        endDate: z.string().optional(),
+        skills: z.array(z.string()).optional(),
+      })
+    })
   },
 });

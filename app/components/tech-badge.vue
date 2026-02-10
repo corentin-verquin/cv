@@ -1,12 +1,22 @@
 <template>
-  <div class="tech-stack">
-    <span v-for="tag in tags" :key="tag" class="tech-tag">{{ tag }}</span>
+  <div :class="[' tech-stack', { 'tech-stack--small': props.small }]">
+    <span
+      v-for="tag in tags"
+      :key="tag"
+      :class="[
+        'tech-tag',
+        { 'tech-tag--small': props.small, 'tech-tag--primary': props.primary },
+      ]"
+      >{{ tag }}</span
+    >
   </div>
 </template>
 
 <script lang="ts" setup>
 const props = defineProps<{
   tags: string[];
+  small?: boolean;
+  primary?: boolean;
 }>();
 </script>
 
@@ -18,6 +28,11 @@ const props = defineProps<{
   margin-top: 2rem;
 }
 
+.tech-stack--small {
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
 .tech-tag {
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -25,11 +40,24 @@ const props = defineProps<{
   border-radius: 8px;
   font-size: 0.85rem;
   transition: all 0.3s ease;
+  cursor: default ;
+}
+
+.tech-tag--small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
 }
 
 .tech-tag:hover {
   border-color: var(--primary);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+}
+
+.tech-tag--primary {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(0, 255, 136, 0.3);
 }
 </style>
