@@ -3,14 +3,27 @@ import { z } from "zod";
 
 export default defineContentConfig({
   collections: {
-    links: defineCollection({
+      links: defineCollection({
+        type: "data",
+        source: "navbar.yaml",
+        schema: z.object({
+          links: z.array(
+            z.object({
+              name: z.string(),
+              url: z.string(),
+            }),
+          ),
+        }),
+      }),
+    contact: defineCollection({
       type: "data",
-      source: "navbar.yaml",
+      source: "contact.yaml",
       schema: z.object({
         links: z.array(
           z.object({
             name: z.string(),
             url: z.string(),
+            primary: z.boolean().default(false),
           }),
         ),
       }),

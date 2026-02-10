@@ -19,6 +19,7 @@
       <ProjectCard v-for="proj in projects" :key="proj.id" :card="proj" />
     </div>
   </section>
+  <Contact />
 </template>
 
 <script setup lang="ts">
@@ -34,8 +35,7 @@ const formations = await queryCollection("formation")
   .order("date", "DESC")
   .all();
 
-const projects = await queryCollection("projet")
-  .all();
+const projects = await queryCollection("projet").all();
 </script>
 
 <style lang="css" scoped>
