@@ -1,0 +1,9 @@
+links:
+  - name: Expérience
+    url: "#experience"
+  - name: Projets
+    url: "#projects"
+  - name: Formation
+    url: "#formation"
+  - name: Contact
+    url: "#contact"

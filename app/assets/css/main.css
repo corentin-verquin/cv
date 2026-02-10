@@ -1,0 +1,25 @@
+:root {
+  --primary: #00ff88;
+  --secondary: #00d4ff;
+  --dark: #0a0e14;
+  --darker: #05070a;
+  --card-bg: #12161f;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #ff006e;
+  --grid-color: rgba(0, 255, 136, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  background: var(--darker);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
