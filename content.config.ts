@@ -34,6 +34,15 @@ export default defineContentConfig({
         endDate: z.string().optional(),
         skills: z.array(z.string()).optional(),
       })
+    }),
+    formation: defineCollection({
+      type: 'page',
+      source: 'formation/**/*.md',
+      schema: z.object({
+        title: z.string(),
+        location: z.string(),
+        date: z.string(),
+      })
     })
   },
 });

@@ -7,6 +7,12 @@
       <ExperienceCard v-for="exp in experiences" :key="exp.id" :card="exp" />
     </div>
   </section>
+  <section id="formation" class="section">
+    <h2 class="section-title">Formation</h2>
+    <div class="education-grid">
+      <FormationCard v-for="form in formations" :key="form.id" :card="form" />
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -14,8 +20,12 @@ const goweb = await queryCollection("experience")
   .where("companyName", "=", "Goweb")
   .first();
 const experiences = await queryCollection("experience")
-  .where("companyName", '<>', "Goweb")
+  .where("companyName", "<>", "Goweb")
   .order("startDate", "DESC")
+  .all();
+
+const formations = await queryCollection("formation")
+  .order("date", "DESC")
   .all();
 </script>
 
@@ -64,20 +74,5 @@ const experiences = await queryCollection("experience")
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: 2rem 0;
-  }
-  .section-title {
-    font-size: 1.8rem;
-  }
 }
 </style>
