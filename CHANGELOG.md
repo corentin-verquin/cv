@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/corentin-verquin/cv/compare/v1.0.1...v1.0.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* update terraform lock ([1290d63](https://github.com/corentin-verquin/cv/commit/1290d6310d93868a8e72f858e0838d86a3d53bf7))
+
 ## [1.0.1](https://github.com/corentin-verquin/cv/compare/v1.0.0...v1.0.1) (2026-08-27)
 
 
