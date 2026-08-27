@@ -22,6 +22,9 @@ jobs:
       run:
         working-directory: terraform
 
+    outputs:
+      s3-name: ${{ steps.s3_bucket.outputs.s3-name }}
+
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
@@ -46,6 +49,11 @@ jobs:
 
       - name: ✅ Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: export S3 Bucket Name
+        id: s3_bucket
+        run: echo "s3-name=$(terraform output -raw s3_bucket_name)" >> $GITHUB_OUTPUT
+
 
   deploy:
     needs: [infra]
@@ -78,4 +86,4 @@ jobs:
 
       - name: 🚀 Deploy
         working-directory: .output/public
-        run: aws s3 sync . s3://cv-site-website --delete
+        run: aws s3 sync . s3://${{ needs.infra.outputs.s3-name }} --delete
