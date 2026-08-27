@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/corentin-verquin/cv/compare/v1.0.0...v1.0.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* update s3 hosting ([dc85888](https://github.com/corentin-verquin/cv/commit/dc858888d7c4b0f48c40f995464439caa0ad68ac))
+
 # 1.0.0 (2026-02-13)
 
 
