@@ -2,7 +2,7 @@
 companyName: Adeo
 jobTitle: Développeur – Platform Engineering
 location: Ronchin, Hauts-de-France
-startDate: 2023/04/01
+startDate: 2023/01/01
 skills: [Docker, GitHub, GitHub, JFrog, Vault, Go, Terraform, Cloudevents, GCP]
 ---
 
