@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/corentin-verquin/cv/compare/v1.0.2...v1.1.0) (2026-10-26)
+
+
+### Features
+
+* add gates experience ([9177ff8](https://github.com/corentin-verquin/cv/commit/9177ff81b6252b3a55f7098a5d019efa7256b187))
+
 ## [1.0.2](https://github.com/corentin-verquin/cv/compare/v1.0.1...v1.0.2) (2026-08-27)
 
 
